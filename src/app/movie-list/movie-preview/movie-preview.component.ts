@@ -1,4 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { MovieModel } from '../../../content/movie-details.model';
 
@@ -9,8 +13,11 @@ import { MovieModel } from '../../../content/movie-details.model';
 })
 export class MoviePreviewComponent implements OnInit {
   @Input() movie: MovieModel;
+  movieId$: Observable<any>;
 
-  constructor() {}
+  constructor(route: ActivatedRoute) {
+    this.movieId$ = route.params.pipe(map(params => params.id));
+  }
 
   ngOnInit() {}
 }

@@ -1,17 +1,10 @@
 import { Routes } from '@angular/router';
-import { MovieDetailsComponent } from './movie-list/movie-details/movie-details.component';
-import { AppComponent } from './app.component';
+import { MovieListComponent } from './movie-list/movie-list.component';
 
 export const appRoutes: Routes = [
   {
-    path: 'movie-details/:id',
-    component: MovieDetailsComponent
-  },
-
-  {
     path: 'movie-list',
-    component: AppComponent,
-    data: { title: 'Awesome movie app' }
+    component: MovieListComponent
   },
 
   {

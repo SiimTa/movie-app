@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from '../../../../node_modules/rxjs';
+import { ActivatedRoute } from '@angular/router';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-details',
@@ -7,12 +10,16 @@ import { Observable } from '../../../../node_modules/rxjs';
   styleUrls: ['./movie-details.component.scss']
 })
 export class MovieDetailsComponent implements OnInit {
-  movie$: Observable<any>;
-  constructor() {}
+  movieId$: Observable<any>;
+  movie$: Observable<any>; //Todo: type MovieModel
+  constructor(route: ActivatedRoute) {
+    this.movieId$ = route.params.pipe(map(params => params.id));
+  }
 
   ngOnInit() {
     // 1) get movie ID from route params
-    // 2) dispatch action...
+    // 2) dispatch action with movieID...
+    // 3) Select the corresponding movie from state
     console.log('in details');
   }
 }
