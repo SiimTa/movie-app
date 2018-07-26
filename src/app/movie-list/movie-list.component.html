@@ -1,5 +1,5 @@
-<ul>
+<ul class="movie-list">
   <li *ngFor="let movie of movies$ | async">
-    <h3>{{ movie.name }}</h3>
+    <app-movie-preview [movie]="movie"></app-movie-preview>
   </li>
 </ul>

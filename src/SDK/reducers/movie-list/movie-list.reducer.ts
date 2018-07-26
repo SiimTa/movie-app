@@ -20,7 +20,21 @@ export function reducer(state = initialState, action: MovieListActions) {
     case MovieListActionTypes.GET_ALL:
       return {
         ...state,
-        movies: [...action.payload]
+        isLoading: true
       };
+    case MovieListActionTypes.GET_ALL_SUCCESS:
+      return {
+        ...state,
+        movies: [...action.payload],
+        isLoading: false
+      };
+
+    case MovieListActionTypes.GET_ALL_FAIL:
+      return {
+        ...state,
+        isLoading: false
+      };
+    default:
+      return state;
   }
 }
