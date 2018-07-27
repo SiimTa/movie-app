@@ -1,9 +1,9 @@
 import {
   MovieListActionTypes,
   MovieListActions
-} from '../../actions/movie-list/movie-list.actions';
+} from '../actions/movie-list.actions';
 
-import { MovieModel } from '../../../content/movie-details.model';
+import { MovieModel } from '../models/movie-details.model';
 
 export interface State {
   movies: MovieModel[];

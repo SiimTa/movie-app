@@ -1,8 +1,8 @@
-<a routerLink="/movie-details/{{movie.id}}">
-  <div class="movie-preview">
+<div class="movie-preview">
+  <a routerLink="/movie-details/{{movie.id}}">
     <h3>{{ movie.name }} </h3>
     <h4>Rating: {{ movie.rate }}</h4>
 
     <img src="/assets/images/movie-covers/{{movie.img}}" alt="image">
-  </div>
-</a>
+  </a>
+</div>

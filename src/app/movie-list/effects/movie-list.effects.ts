@@ -4,8 +4,8 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
-import * as MovieListActions from '../../actions/movie-list/movie-list.actions';
-import { MovieService } from '../../services/movie/movie.service';
+import * as MovieListActions from '../actions/movie-list.actions';
+import { MovieService } from '../services/movie.service';
 
 @Injectable()
 export class MovieListEffects {

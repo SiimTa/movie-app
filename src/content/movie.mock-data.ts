@@ -1,4 +1,4 @@
-import { genreType } from './movie-details.model';
+import { genreType } from '../app/movie-list/models/movie-details.model';
 
 export const movies: any[] = [
   {

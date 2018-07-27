@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 
 // Import module components
 import { MovieListComponent } from './movie-list.component';
-import { MoviePreviewComponent } from './movie-preview/movie-preview.component';
-import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { MoviePreviewComponent } from './components/movie-preview/movie-preview.component';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 // Import Module Effects & ngrx dependency
 import { EffectsModule } from '@ngrx/effects';
-import { MovieListEffects } from '../../SDK/effects/movie-list/movie-list.effects';
+import { MovieListEffects } from './effects/movie-list.effects';
+import { MovieDetailsEffects } from './effects/movie-details.effects';
 
 // Import module routing
 import { RouterModule } from '@angular/router';
@@ -22,7 +23,7 @@ import { movieListRoutes } from './movie-list-routing.module';
   ],
   imports: [
     CommonModule,
-    EffectsModule.forRoot([MovieListEffects]),
+    EffectsModule.forRoot([MovieListEffects, MovieDetailsEffects]),
     RouterModule.forChild(movieListRoutes)
   ],
   exports: [MovieListComponent, MoviePreviewComponent, MovieDetailsComponent]
