@@ -1,4 +1,6 @@
-import { MovieListModuleStore } from '../reducers';
+import { AppState } from '../../reducers';
 
-export const allMovies = (state: MovieListModuleStore) =>
-  state.moviesList.movies;
+/**
+ * Selectors used by movie-list component
+ */
+export const allMovies = (state: AppState) => state.moviesList.movies;

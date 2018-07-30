@@ -10,9 +10,10 @@ import { AppComponent } from './app.component';
 // Import store & -devtools dependencies
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
-// Import reducers from SDK
-import { reducers } from './movie-list/reducers';
+// Import all reducers used in app throughout different modules
+import { reducers } from './reducers/';
 
 // Import routing module & application routes
 import { RouterModule } from '@angular/router';
@@ -25,14 +26,27 @@ import { appRoutes } from './app-routing.module';
     MovieListModule,
     RouterModule.forRoot(appRoutes),
     StoreModule.forRoot({
-      moviesList: reducers.movieListReducer, // TODO: move to movie-list module?
-      movieDetails: reducers.movieDetailsReducer // TODO: move to movie-list module?
+      ...reducers
     }),
+
+    /**
+     * EffectsModule.forRoot() is imported once in the root module and
+     * sets up the effects class to be initialized immediately when the
+     * application starts.
+     * #Documentation: https://github.com/ngrx/platform/blob/master/docs/effects/README.md
+     */
+    EffectsModule.forRoot([]),
+
+    /**
+     * Store Devtools extension for browsers
+     * Enables time-travel debugging
+     * #Documentation: https://github.com/ngrx/platform/blob/master/docs/store-devtools/README.md
+     */
     StoreDevtoolsModule.instrument({
-      maxAge: 25 // Retains last 25 states
+      name: 'NgRx Movie Store',
+      maxAge: 25
     })
   ],
-
   providers: [],
   bootstrap: [AppComponent]
 })

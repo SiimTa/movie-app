@@ -2,9 +2,11 @@ import {
   MovieListActionTypes,
   MovieListActions
 } from '../actions/movie-list.actions';
-
 import { MovieModel } from '../models/movie-details.model';
 
+/**
+ * Movie-List component state interface
+ */
 export interface State {
   movies: MovieModel[];
   isLoading: boolean;

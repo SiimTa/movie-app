@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { MovieModel } from '../../models/movie-details.model';
 import * as MovieDetailsActions from '../../actions/movie-details.actions';
-import { MovieListModuleStore } from '../../reducers/index';
-import { MovieService } from '../../services/movie.service';
+import { AppState } from '../../../reducers/';
+import { selectedMovie } from '../../selectors/movie-details.selectors';
 
 @Component({
   selector: 'app-movie-details',
@@ -15,20 +15,15 @@ import { MovieService } from '../../services/movie.service';
   styleUrls: ['./movie-details.component.scss']
 })
 export class MovieDetailsComponent implements OnInit {
+  movie$: MovieModel;
   movieId: Subscription;
-  movie$: Observable<MovieModel>;
-  id: any;
 
-  constructor(
-    private store: Store<MovieListModuleStore>,
-    route: ActivatedRoute
-  ) {
+  constructor(private store: Store<AppState>, route: ActivatedRoute) {
     this.movieId = route.params
       .pipe(map(params => params.id))
       .subscribe(id => this.requestMovie(id));
 
-    this.movie$ = store.select(state => state.movieDetails.movie);
-    this.id = store.select(state => state.movieDetails.movieId);
+    this.store.select(selectedMovie).subscribe(data => (this.movie$ = data));
   }
 
   ngOnInit() {}

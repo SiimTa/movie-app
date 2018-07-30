@@ -6,7 +6,7 @@ import * as MovieListActions from './actions/movie-list.actions';
 import { allMovies } from './selectors/movie-list.selectors';
 import { MovieModel } from './models/movie-details.model';
 
-import { MovieListModuleStore } from './reducers';
+import { AppState } from '../reducers/';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,10 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieListComponent implements OnInit {
   movies$: Observable<MovieModel[]>;
 
-  constructor(
-    private store: Store<MovieListModuleStore>,
-    route: ActivatedRoute
-  ) {
+  constructor(private store: Store<AppState>, route: ActivatedRoute) {
     this.movies$ = this.store.select(allMovies);
   }
 

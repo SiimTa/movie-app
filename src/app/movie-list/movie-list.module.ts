@@ -23,7 +23,7 @@ import { movieListRoutes } from './movie-list-routing.module';
   ],
   imports: [
     CommonModule,
-    EffectsModule.forRoot([MovieListEffects, MovieDetailsEffects]),
+    EffectsModule.forFeature([MovieListEffects, MovieDetailsEffects]),
     RouterModule.forChild(movieListRoutes)
   ],
   exports: [MovieListComponent, MoviePreviewComponent, MovieDetailsComponent]

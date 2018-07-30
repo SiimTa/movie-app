@@ -8,12 +8,12 @@ export const enum MovieDetailsActionTypes {
 
 export class GetSelectedMovie implements Action {
   readonly type = MovieDetailsActionTypes.GET_SELECTED_MOVIE;
-  constructor(public payload: any = null) {}
+  constructor(public payload) {}
 }
 
 export class GetSelectedMovieSuccess implements Action {
   readonly type = MovieDetailsActionTypes.GET_SELECTED_MOVIE_SUCCESS;
-  constructor(public payload: any) {}
+  constructor(public payload) {}
 }
 
 export class GetSelectedMovieFail implements Action {

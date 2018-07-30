@@ -2,9 +2,11 @@ import {
   MovieDetailsActionTypes,
   MovieDetailsActions
 } from '../actions/movie-details.actions';
-
 import { MovieModel } from '../models/movie-details.model';
 
+/**
+ * Movie-List component state interface
+ */
 export interface State {
   movie: MovieModel;
   isLoading: Boolean;
@@ -38,7 +40,7 @@ export function reducer(state = initialState, action: MovieDetailsActions) {
     case MovieDetailsActionTypes.GET_SELECTED_MOVIE_SUCCESS:
       return {
         ...state,
-        movie: [...action.payload],
+        movie: action.payload,
         isLoading: false
       };
 
