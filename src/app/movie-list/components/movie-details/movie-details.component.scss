@@ -1,0 +1,30 @@
+@import '../../../../styles.scss'; // Import globals
+
+.movie-details-container {
+  .rating {
+    &-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: $main-color;
+    }
+
+    &-max {
+      font-size: 12px;
+      margin-left: -5px;
+    }
+  }
+
+  .extra-info {
+    div {
+      padding: 5px 0;
+    }
+  }
+
+  .title {
+    font-size: 16px;
+  }
+  .data {
+    font-weight: 700;
+    font-size: 16px;
+  }
+}

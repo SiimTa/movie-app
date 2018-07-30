@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 /**
- * Routing that happens within Movie-Details module
+ * Routing which takes place within MovieDetails module
  */
 export const movieListRoutes: Routes = [
   {

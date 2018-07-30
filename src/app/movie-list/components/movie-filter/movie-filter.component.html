@@ -1,0 +1,14 @@
+<div class="movie-filter col ml-3">
+
+  <button type="button" class="btn btn-sm btn-dark" (click)="toggleMovieFilters()">
+    {{ movieFiltersVisible ? "Hide Filters" : "Show Filters"}}
+  </button>
+
+  <div class="filters-container" *ngIf="movieFiltersVisible">
+    <h6>Filter by genre: </h6>
+    <div (click)="movieFilterClick(genre)" class="filter" *ngFor="let genre of genres"> {{genre }}
+      <span class="ghost">|</span>
+    </div>
+  </div>
+
+</div>

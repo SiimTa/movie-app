@@ -18,9 +18,12 @@ import { reducers } from './reducers/';
 // Import routing module & application routes
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app-routing.module';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { MovieFilterComponent } from './movie-list/components/movie-filter/movie-filter.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
     BrowserModule,
     MovieListModule,

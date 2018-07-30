@@ -1,7 +1,11 @@
 .movie-preview {
-  border: 1px solid red;
+  text-align: center;
+  border: 1px solid #343a40;
+  margin: 20px;
 
   a {
+    display: block;
     text-decoration: none;
+    padding: 20px;
   }
 }
