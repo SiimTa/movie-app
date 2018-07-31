@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { MovieModel } from '../../models/movie-details.model';
+import { MovieModel } from '../../models/movie.model';
 import * as MovieDetailsActions from '../../actions/movie-details.actions';
-import { AppState } from '../../../reducers/';
+import { AppState } from '../../../reducers';
 import { selectedMovie } from '../../selectors/movie-details.selectors';
 
 @Component({
@@ -16,10 +16,9 @@ import { selectedMovie } from '../../selectors/movie-details.selectors';
 })
 export class MovieDetailsComponent implements OnInit {
   movie$: MovieModel;
-  movieId: Subscription;
 
   constructor(private store: Store<AppState>, route: ActivatedRoute) {
-    this.movieId = route.params
+    route.params
       .pipe(map(params => params.id))
       .subscribe(id => this.requestMovie(id));
 

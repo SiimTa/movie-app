@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 import * as MovieListActions from './actions/movie-list.actions';
 import { allMovies } from './selectors/movie-list.selectors';
-import { MovieModel } from './models/movie-details.model';
+import { MovieModel } from './models/movie.model';
 
-import { AppState } from '../reducers/';
+import { AppState } from '../reducers';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

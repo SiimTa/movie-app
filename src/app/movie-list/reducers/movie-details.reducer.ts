@@ -2,7 +2,7 @@ import {
   MovieDetailsActionTypes,
   MovieDetailsActions
 } from '../actions/movie-details.actions';
-import { MovieModel } from '../models/movie-details.model';
+import { MovieModel } from '../models/movie.model';
 
 /**
  * Movie-List component state interface

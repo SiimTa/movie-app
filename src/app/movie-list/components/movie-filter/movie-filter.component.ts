@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { genreType } from '../../models/movie-details.model';
+import { Store } from '@ngrx/store';
+
+import { AppState } from '../../../reducers';
+import { genreType } from '../../models/movie.model';
+import { capitalizeFirstLetter } from '../../../utils/string-utils';
+import * as MovieListActions from '../../actions/movie-list.actions';
+import { filtersVisible } from '../../selectors/movie-list.selectors';
 
 @Component({
   selector: 'app-movie-filter',
@@ -8,9 +14,13 @@ import { genreType } from '../../models/movie-details.model';
 })
 export class MovieFilterComponent implements OnInit {
   genres: any[] = [];
-  movieFiltersVisible: boolean = false;
+  movieFiltersVisible: boolean;
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {
+    this.store
+      .select(filtersVisible)
+      .subscribe(data => (this.movieFiltersVisible = data));
+  }
 
   ngOnInit() {
     this.getMovieGenres();
@@ -18,15 +28,17 @@ export class MovieFilterComponent implements OnInit {
 
   getMovieGenres() {
     Object.entries(genreType).forEach(([value]) => {
-      this.genres.push(value);
+      this.genres.push(capitalizeFirstLetter(value));
     });
   }
+
   toggleMovieFilters() {
-    this.movieFiltersVisible = !this.movieFiltersVisible;
+    this.movieFiltersVisible
+      ? this.store.dispatch(new MovieListActions.UI_HideFilters())
+      : this.store.dispatch(new MovieListActions.UI_ShowFilters());
   }
 
-  movieFilterClick(e) {
-    //TODO: Filter movies
-    console.log(e);
+  movieFilterClick(filter) {
+    this.store.dispatch(new MovieListActions.ApplyFilter(filter.toLowerCase()));
   }
 }

@@ -13,7 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 // Import all reducers used in app throughout different modules
-import { reducers } from './reducers/';
+import { reducers } from './reducers';
 
 // Import routing module & application routes
 import { RouterModule } from '@angular/router';
