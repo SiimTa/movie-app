@@ -8,19 +8,19 @@ import { MovieListModule } from './movie-list/movie-list.module';
 import { AppComponent } from './app.component';
 
 // Import store & -devtools dependencies
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 // Import all reducers used in app throughout different modules
-import { reducers } from './reducers';
+import { AppState, reducers } from './reducers';
 
 // Import routing module & application routes
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { MovieFilterComponent } from './movie-list/components/movie-filter/movie-filter.component';
+import * as MovieListActions from './movie-list/actions/movie-list.actions';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
@@ -53,4 +53,10 @@ import { MovieFilterComponent } from './movie-list/components/movie-filter/movie
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private store: Store<AppState>) {
+    // Request data necessary for app
+    // Doing this only because I wanted to put MovieList into separate Module(learn by it)
+    this.store.dispatch(new MovieListActions.GetMovies());
+  }
+}

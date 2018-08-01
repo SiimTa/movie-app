@@ -12,7 +12,7 @@ export class MovieDetailsEffects {
   @Effect()
   getMovie$: Observable<Action> = this.actions$.pipe(
     ofType(MovieDetailsActions.MovieDetailsActionTypes.GET_SELECTED_MOVIE),
-    map((action: MovieDetailsActions.GetSelectedMovie) => action.payload), // god damn... need this, because payload is not in ngrx Action
+    map((action: MovieDetailsActions.GetSelectedMovie) => action.payload), // We need this typing, because payload is not in ngrx Action by default
     mergeMap(payload =>
       this.service.getMovie(payload).pipe(
         // If successful, dispatch success action with response data

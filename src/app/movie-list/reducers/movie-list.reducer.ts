@@ -9,16 +9,16 @@ import { MovieModel, GenreType } from '../models/movie.model';
  */
 export interface State {
   movies: MovieModel[];
-  moviesCached: MovieModel[];
   isLoading: boolean;
   filtersVisible: boolean;
+  appliedFilter: string;
 }
 
 const initialState: State = {
   movies: [],
-  moviesCached: [],
   isLoading: false,
-  filtersVisible: false
+  filtersVisible: false,
+  appliedFilter: ''
 };
 
 export function reducer(state = initialState, action: MovieListActions) {
@@ -32,7 +32,6 @@ export function reducer(state = initialState, action: MovieListActions) {
       return {
         ...state,
         movies: [...action.payload],
-        moviesCached: [...action.payload],
         filtersVisible: false,
         isLoading: false
       };
@@ -43,23 +42,9 @@ export function reducer(state = initialState, action: MovieListActions) {
         isLoading: false
       };
     case MovieListActionTypes.APPLY_FILTER:
-      let filteredMovies;
-      const filter = action.payload;
-
-      /**
-       * Show all or apply filter to visible movies
-       */
-      if (filter === 'all') {
-        filteredMovies = state.moviesCached;
-      } else {
-        filteredMovies = state.moviesCached.filter(
-          movie => movie.genres.indexOf(filter) > -1
-        );
-      }
-
       return {
         ...state,
-        movies: filteredMovies
+        appliedFilter: action.payload.toLowerCase()
       };
     case MovieListActionTypes.UI_SHOW_FILTERS:
       return {

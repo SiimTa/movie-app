@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { MovieModel } from '../../models/movie.model';
 import * as MovieDetailsActions from '../../actions/movie-details.actions';
 import { AppState } from '../../../reducers';
-import { selectedMovie } from '../../selectors/movie-details.selectors';
+import { selectMovie } from '../../selectors/movie-details.selectors';
 
 @Component({
   selector: 'app-movie-details',
@@ -22,7 +21,7 @@ export class MovieDetailsComponent implements OnInit {
       .pipe(map(params => params.id))
       .subscribe(id => this.requestMovie(id));
 
-    this.store.select(selectedMovie).subscribe(data => (this.movie$ = data));
+    store.pipe(select(selectMovie)).subscribe(data => (this.movie$ = data));
   }
 
   ngOnInit() {}
