@@ -28,7 +28,6 @@ export class MovieService {
    */
   getMovie(id) {
     const movie = movies.filter(item => item.id == id)[0];
-    console.log(movie);
     return of(movie);
   }
 }
