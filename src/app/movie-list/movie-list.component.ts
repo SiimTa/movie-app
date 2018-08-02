@@ -11,7 +11,6 @@ import {
 } from './selectors/movie-list.selectors';
 import { MovieModel } from './models/movie.model';
 import * as MovieListActions from './actions/movie-list.actions';
-
 import { AppState } from '../reducers';
 
 @Component({
@@ -56,7 +55,6 @@ export class MovieListComponent implements OnInit {
   }
 
   searchMovies(searchString) {
-    console.log(searchString);
     this.movies$ = this.store.pipe(
       select(selectAllMovies),
       map(movies =>

@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { StoreModule, Store } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 // Import all reducers used in app throughout different modules
 import { AppState, reducers } from './reducers';
@@ -55,13 +54,6 @@ import { SearchComponent } from './header/search/search.component';
     StoreDevtoolsModule.instrument({
       name: 'NgRx Movie Store',
       maxAge: 25
-    }),
-    /**
-     * Connects RouterModule with StoreModule
-     * #Documentation https://github.com/ngrx/platform/blob/master/docs/router-store/README.md
-     */
-    StoreRouterConnectingModule.forRoot({
-      stateKey: 'router' // 'router' = name of reducer key
     })
   ],
   providers: [],
