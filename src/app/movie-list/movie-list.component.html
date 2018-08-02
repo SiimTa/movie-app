@@ -1,6 +1,6 @@
 <app-movie-filter [movieFiltersVisible]="movieFiltersVisible"></app-movie-filter>
 <div class="row">
-  <div class="col-sm-1 col-md-6 col-lg-4" *ngFor="let movie of movies$ | async">
+  <div class="col-sm-6 col-lg-3" *ngFor="let movie of movies$ | async">
     <app-movie-preview [movie]="movie"></app-movie-preview>
   </div>
 </div>

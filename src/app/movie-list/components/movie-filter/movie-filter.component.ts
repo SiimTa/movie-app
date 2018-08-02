@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../../reducers';
@@ -13,9 +14,12 @@ import * as MovieListActions from '../../actions/movie-list.actions';
 })
 export class MovieFilterComponent implements OnInit {
   @Input() movieFiltersVisible: boolean;
+  location: Location;
   genres: any[] = [];
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, location: Location) {
+    this.location = location;
+  }
 
   ngOnInit() {
     this.getMovieGenres();

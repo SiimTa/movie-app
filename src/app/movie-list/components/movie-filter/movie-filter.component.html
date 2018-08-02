@@ -6,9 +6,10 @@
 
   <div class="filters-container" *ngIf="movieFiltersVisible">
     <h6>Filter by genre: </h6>
-    <div (click)="movieFilterClick(genre)" class="filter" *ngFor="let genre of genres"> {{genre }}
+    <a routerLink="/movie-list" fragment="{{genre.toLowerCase()}}" (click)="movieFilterClick(genre, $event)" class="filter" [ngClass]="{'active': genre.toLowerCase()===location.path(true).slice(location.path(true).indexOf('#') + 1)}"
+      *ngFor="let genre of genres">
+      {{genre}}
       <span class="ghost">|</span>
-    </div>
-  </div>
+    </a>
 
-</div>
+  </div>

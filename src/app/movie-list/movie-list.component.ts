@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,9 +10,9 @@ import {
   selectFiltersVisible
 } from './selectors/movie-list.selectors';
 import { MovieModel } from './models/movie.model';
+import * as MovieListActions from './actions/movie-list.actions';
 
 import { AppState } from '../reducers';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movie-list',
@@ -33,7 +34,9 @@ export class MovieListComponent implements OnInit {
       .pipe(select(selectFiltersVisible))
       .subscribe(data => (this.movieFiltersVisible = data));
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.applyMovieFilterFromHash(location.hash.slice(1));
+  }
 
   applyMovieFilter(filter) {
     // Avoid filtering process for initial state '' & 'all' - show all movies
@@ -46,5 +49,12 @@ export class MovieListComponent implements OnInit {
       select(selectAllMovies),
       map(movies => movies.filter(movie => movie.genres.indexOf(filter) > -1))
     );
+  }
+
+  applyMovieFilterFromHash(hash) {
+    if (hash) {
+      this.store.dispatch(new MovieListActions.ApplyFilter(hash));
+      this.store.dispatch(new MovieListActions.UI_ShowFilters());
+    }
   }
 }
