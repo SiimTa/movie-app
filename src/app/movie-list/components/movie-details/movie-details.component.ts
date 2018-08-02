@@ -7,6 +7,7 @@ import { MovieModel } from '../../models/movie.model';
 import * as MovieDetailsActions from '../../actions/movie-details.actions';
 import { AppState } from '../../../reducers';
 import { selectMovie } from '../../selectors/movie-details.selectors';
+import { selectAllMovies } from '../../selectors/movie-list.selectors';
 
 @Component({
   selector: 'app-movie-details',
@@ -19,7 +20,7 @@ export class MovieDetailsComponent implements OnInit {
   constructor(private store: Store<AppState>, route: ActivatedRoute) {
     route.params
       .pipe(map(params => params.id))
-      .subscribe(id => this.requestMovie(id));
+      .subscribe(id => this.selectMovie(id));
   }
 
   ngOnInit() {
@@ -28,7 +29,14 @@ export class MovieDetailsComponent implements OnInit {
       .subscribe(data => (this.movie$ = data));
   }
 
-  requestMovie(movieId) {
-    this.store.dispatch(new MovieDetailsActions.GetSelectedMovie(movieId));
+  selectMovie(movieId) {
+    this.store
+      .pipe(
+        select(selectAllMovies),
+        map(movies => movies.filter(movie => movie.id == movieId)[0])
+      )
+      .subscribe(movie =>
+        this.store.dispatch(new MovieDetailsActions.GetSelectedMovie(movie))
+      );
   }
 }

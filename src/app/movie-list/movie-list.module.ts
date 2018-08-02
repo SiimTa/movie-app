@@ -10,7 +10,6 @@ import { MovieFilterComponent } from './components/movie-filter/movie-filter.com
 // Import Module Effects & ngrx dependency
 import { EffectsModule } from '@ngrx/effects';
 import { MovieListEffects } from './effects/movie-list.effects';
-import { MovieDetailsEffects } from './effects/movie-details.effects';
 
 // Import module routing
 import { RouterModule } from '@angular/router';
@@ -25,7 +24,7 @@ import { movieListRoutes } from './movie-list-routing.module';
   ],
   imports: [
     CommonModule,
-    EffectsModule.forFeature([MovieListEffects, MovieDetailsEffects]),
+    EffectsModule.forFeature([MovieListEffects]),
     RouterModule.forChild(movieListRoutes)
   ],
   exports: [

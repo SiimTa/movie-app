@@ -9,12 +9,9 @@ import { MovieModel } from '../models/movie.model';
  */
 export interface State {
   movie: MovieModel;
-  isLoading: Boolean;
-  movieId: null;
 }
 
 const initialState: State = {
-  movieId: null,
   movie: {
     id: 0,
     key: '',
@@ -24,8 +21,7 @@ const initialState: State = {
     rate: '',
     length: '',
     img: ''
-  },
-  isLoading: false
+  }
 };
 
 export function reducer(state = initialState, action: MovieDetailsActions) {
@@ -33,21 +29,7 @@ export function reducer(state = initialState, action: MovieDetailsActions) {
     case MovieDetailsActionTypes.GET_SELECTED_MOVIE:
       return {
         ...state,
-        movieId: action.payload,
-        isLoading: true
-      };
-
-    case MovieDetailsActionTypes.GET_SELECTED_MOVIE_SUCCESS:
-      return {
-        ...state,
-        movie: action.payload,
-        isLoading: false
-      };
-
-    case MovieDetailsActionTypes.GET_SELECTED_MOVIE_FAIL:
-      return {
-        ...state,
-        isLoading: false
+        movie: action.payload
       };
     default:
       return state;
