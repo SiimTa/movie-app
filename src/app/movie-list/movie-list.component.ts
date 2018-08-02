@@ -24,17 +24,21 @@ export class MovieListComponent implements OnInit {
   movieFilter$: Subscription;
   movieFiltersVisible: boolean;
 
-  constructor(private store: Store<AppState>, route: ActivatedRoute) {
-    this.movies$ = store.pipe(select(selectAllMovies));
-    this.movieFilter$ = store
+  constructor(private store: Store<AppState>, route: ActivatedRoute) {}
+  ngOnInit() {
+    this.store
+      .pipe(select(state => state.search.searchString))
+      .subscribe(searchString => this.searchMovies(searchString));
+
+    this.store
+      .pipe(select(selectFiltersVisible))
+      .subscribe(data => (this.movieFiltersVisible = data));
+
+    this.movies$ = this.store.pipe(select(selectAllMovies));
+    this.movieFilter$ = this.store
       .pipe(select(selectAppliedFilter))
       .subscribe(filter => this.applyMovieFilter(filter));
 
-    store
-      .pipe(select(selectFiltersVisible))
-      .subscribe(data => (this.movieFiltersVisible = data));
-  }
-  ngOnInit() {
     this.applyMovieFilterFromHash(location.hash.slice(1));
   }
 
@@ -48,6 +52,21 @@ export class MovieListComponent implements OnInit {
     this.movies$ = this.store.pipe(
       select(selectAllMovies),
       map(movies => movies.filter(movie => movie.genres.indexOf(filter) > -1))
+    );
+  }
+
+  searchMovies(searchString) {
+    console.log(searchString);
+    this.movies$ = this.store.pipe(
+      select(selectAllMovies),
+      map(movies =>
+        movies.filter(
+          movie =>
+            (movie.name || movie.description)
+              .toLowerCase()
+              .indexOf(searchString) > -1
+        )
+      )
     );
   }
 

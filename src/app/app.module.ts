@@ -22,9 +22,15 @@ import { appRoutes } from './app-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import * as MovieListActions from './movie-list/actions/movie-list.actions';
+import { SearchComponent } from './header/search/search.component';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    HeaderComponent,
+    SearchComponent
+  ],
   imports: [
     BrowserModule,
     MovieListModule,

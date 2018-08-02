@@ -20,11 +20,13 @@ export class MovieDetailsComponent implements OnInit {
     route.params
       .pipe(map(params => params.id))
       .subscribe(id => this.requestMovie(id));
-
-    store.pipe(select(selectMovie)).subscribe(data => (this.movie$ = data));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store
+      .pipe(select(selectMovie))
+      .subscribe(data => (this.movie$ = data));
+  }
 
   requestMovie(movieId) {
     this.store.dispatch(new MovieDetailsActions.GetSelectedMovie(movieId));
