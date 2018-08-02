@@ -1,6 +1,5 @@
 <nav class="navbar navbar-dark bg-dark mb-2">
   <a class="navbar-brand" routerLink="/movie-list">Movie App</a>
 
-
-  <app-search></app-search>
+  <app-search *ngIf="this.location.path() == '/movie-list'"></app-search>
 </nav>
