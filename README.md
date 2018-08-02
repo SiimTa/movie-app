@@ -16,11 +16,11 @@ TODO: Verify steps
 
 ## Running tests
 
-### Running unit tests
+### Running unit tests - TODO
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-### Running end-to-end tests
+### Running end-to-end tests - TODO
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
@@ -31,5 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Technologies used
 
 - [Angular CLI](https://github.com/angular/angular-cli)
+- [Angular](https://angular.io/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [ngrx](https://github.com/ngrx/platform)
 - [Sass](https://sass-lang.com/)
