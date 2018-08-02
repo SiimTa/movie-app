@@ -1,4 +1,4 @@
-# MovieApp
+# MovieApp  - live @ https://nameless-savannah-99618.herokuapp.com/movie-list
 
 Playground application with static data for learning Angular, Typescript & State management with NgRx
 
